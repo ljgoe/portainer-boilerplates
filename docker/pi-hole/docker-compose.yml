@@ -21,11 +21,11 @@ services:
       - 443:443/tcp
 
     volumes:
-      - <path/to/host/pihole>:/etc/pihole
-      - <path/to/host/dnsmasq.d>:/etc/dnsmasq.d
+      - /root/Docker/pihole/etc:/etc/pihole
+      - /root/Docker/pihole/dns:/etc/dnsmasq.d
     environment:
-      - TZ=Europe/Brussels
-      - WEBPASSWORD=password
+      - TZ=Australia/Sydney
+      - WEBPASSWORD=password123
 
 # Network only needed if you want to use pihole while connected to the WireGuard VPN.
 networks:
