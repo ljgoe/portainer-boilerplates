@@ -1,3 +1,8 @@
+# create directory on host linux machine
+# mkdir /root/Docker/pve
+# add the below to a new yaml file
+# sudo nano root/Docker/pve/pve.yml
+
 default:
     user: monitoring@pam
     token_name: "monitoring"
