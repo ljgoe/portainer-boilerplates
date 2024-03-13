@@ -27,6 +27,8 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
     restart: unless-stopped
+    labels:
+      org.label-schema.group: "monitoring"
 
 # https://github.com/prometheus/node_exporter
   node_exporter:
@@ -48,10 +50,13 @@ services:
     #   - "8080:8080"
     volumes:
       - /:/rootfs:ro
-      - /var/run:/var/run:ro
+      - /var/run:/var/run:rw
       - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /etc/machine-id:/etc/machine-id:ro
+      - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id:ro
     devices:
-      - /dev/kmsg
+      - /dev/kmsg:/dev/kmsg
     restart: unless-stopped
+
+    

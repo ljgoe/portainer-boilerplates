@@ -1,0 +1,5 @@
+default:
+    user: monitoring@pam
+    token_name: "monitoring"
+    token_value: "3cbbd5f5-e3ea-4b6b-8ee9-af7bc2d4880f"
+    verify_ssl: false
