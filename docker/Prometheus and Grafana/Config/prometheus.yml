@@ -16,12 +16,28 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-# Example job for node_exporter
+  # Job for node_exporter
   - job_name: 'node_exporter'
     static_configs:
-      - targets: ['node_exporter:9100']
+      - targets: ['192.168.1.194:9100']
 
- # Example job for cadvisor
+  # Job for cadvisor
   - job_name: 'cadvisor'
     static_configs:
-      - targets: ['cadvisor:8080']
+      - targets: ['192.168.1.194:8080']
+
+  # Job for Proxmox Exporter
+  - job_name: 'pve'
+    static_configs:
+      - targets:
+        - 192.168.1.199  # Proxmox VE node 1
+    metrics_path: /pve
+    params:
+      module: [default]
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 192.168.1.194:9221 # PVE address
