@@ -1,0 +1,20 @@
+# https://www.duplicati.com/
+# sudo mkdir /root/Docker/duplicati
+
+version: '3'
+
+services:
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Sydney
+    volumes:
+      - /root/Docker/duplicati:/config # change path according your needs;
+      - /root/Docker/duplicati:/backups
+      - /root/Docker/duplicati:/source
+    ports:
+      - 8200:8200
+    restart: unless-stopped
