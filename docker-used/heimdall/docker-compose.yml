@@ -13,6 +13,6 @@ services:
     volumes:
       - /root/Docker/heimdall/config:/config
     ports:
-      - 80:80
-      - 443:443
+      - 81:81
+      - 444:444
     restart: unless-stopped
