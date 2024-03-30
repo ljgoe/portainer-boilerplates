@@ -18,7 +18,9 @@ services:
     restart: unless-stopped
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
-
+    labels:
+      org.label-schema.group: "monitoring"
+      
   grafana:
     image: grafana/grafana:latest
     container_name: grafana
@@ -29,11 +31,13 @@ services:
     restart: unless-stopped
     labels:
       org.label-schema.group: "monitoring"
-
+      
 # https://github.com/prometheus/node_exporter
   node_exporter:
       image: quay.io/prometheus/node-exporter:latest
       container_name: node_exporter
+      ports:
+       - "9100:9100"
       command:
         - '--path.rootfs=/host'
       network_mode: host
@@ -44,10 +48,10 @@ services:
         
 # https://github.com/google/cadvisor
   cadvisor:
-    image: google/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor:latest
     container_name: cadvisor
-    # ports:
-    #   - "8080:8080"
+    ports:
+     - "8080:8080"
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:rw
@@ -55,8 +59,4 @@ services:
       - /var/lib/docker:/var/lib/docker:ro
       - /etc/machine-id:/etc/machine-id:ro
       - /var/lib/dbus/machine-id:/var/lib/dbus/machine-id:ro
-    devices:
-      - /dev/kmsg:/dev/kmsg
     restart: unless-stopped
-
-    

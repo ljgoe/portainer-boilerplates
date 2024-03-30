@@ -1,5 +1,5 @@
-# https://www.duplicati.com/
 # sudo mkdir /root/Docker/duplicati
+# set Volumes to /root/Docker/duplicati:
 
 version: '3'
 

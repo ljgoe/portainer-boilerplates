@@ -1,3 +1,5 @@
+# mkdir /root/Docker/uptimekuma
+
 version: '3'
 
 services:
@@ -11,4 +13,4 @@ services:
       - 3001:3001
 
     volumes:
-      - <path/to/local/data>:/app/data
+      - /root/Docker/uptimekuma/app:/app/data
