@@ -1,3 +1,6 @@
+# A simple, yet powerful dashboard for your server
+# mkdir /root/Docker/homarr
+
 version: '3'
 
 services:
@@ -10,6 +13,6 @@ services:
       - 7575:7575
 
     volumes:
-      - </path/to/host/configs>:/app/data/configs
-      - </path/to/host/icons>:/app/public/icons
+      - /root/Docker/homarr:/app/data/configs
+      - /root/Docker/homarr:/app/public/icons
       - /var/run/docker.sock:/var/run/docker.sock:ro
