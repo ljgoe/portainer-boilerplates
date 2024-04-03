@@ -1,7 +1,0 @@
----
-- name: Reboot systems
-  hosts: simlab
-  become: yes
-  tasks:
-    - name: Reboot
-      reboot:
